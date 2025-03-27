@@ -3,19 +3,19 @@ import {
   createUser,
   loginUser,
 } from "../../controller/usercontroller/usercontroller.js";
+import { messages } from "../../utils/messages/messages.js";
 const userRoute = express.Router();
 
 userRoute.post("/createuser", async (req, res) => {
   const userRes = await createUser(req.body);
   if (userRes?.error) {
     return res.status(403).json({
-      message: "failed",
+      message: userRes?.error,
       status: "failure",
-      error: userRes?.error,
     });
   } else {
     return res.status(200).json({
-      message: "user created",
+      message: messages.success.userCreate_msg,
       status: "success",
       data: userRes,
     });
@@ -28,21 +28,18 @@ userRoute.post("/login", async (req, res) => {
 
     if (data?.error) {
       return res.status(403).json({
-        message: "failed",
+        message: data?.error,
         status: "failure",
-        error: data?.error,
       });
     }
     return res.status(200).json({
       status: "success",
-      message: "user logged in",
       ...data,
     });
   } catch (error) {
     return res.status(403).json({
-      message: "failed",
+      message: error?.message,
       status: "failure",
-      error: error?.message,
     });
   }
 });
