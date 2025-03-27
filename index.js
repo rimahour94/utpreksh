@@ -12,7 +12,7 @@ server.use(express.json());
 server.use(route);
 
 server.get("/", (req, res) => {
-  res.status(200).json({ message: "Server is Running" });
+  res.status(200).send("Server is Running");
 });
 
 server.listen(PORT, () => {
