@@ -9,7 +9,7 @@ export const createUser = async (userdata) => {
   try {
     const user = new userModel(userdata);
     await user.save();
-    return { jwttoken, ...jwtuserData };
+    return { message: "User created successfully" };
   } catch (err) {
     return { error: err?.message };
   }

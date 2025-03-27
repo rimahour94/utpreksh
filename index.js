@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import dbconnect from "./db/connection.js";
 import { route } from "./route/baseroute.js";
 
 dotenv.config();
