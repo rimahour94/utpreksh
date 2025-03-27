@@ -25,7 +25,6 @@ userRoute.post("/createuser", async (req, res) => {
 userRoute.post("/login", async (req, res) => {
   try {
     const data = await loginUser(req?.body);
-    console.log(data);
 
     if (data?.error) {
       return res.status(403).json({
